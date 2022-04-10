@@ -1,0 +1,104 @@
+<div class="container">
+  <div class="result-box">
+    <span>Итоговая стоимость: <strong>{{result}} ₽</strong></span>
+  </div>
+  <div class="calc-box">
+    <div class="calc-item">
+      <p class="title-item">1. Фактура</p>
+      <label class="label-title">&nbsp;</label>
+      <!--Фактура------------------------------------------------------------------------>
+      <div class="calc-item-flex">
+        <input [(ngModel)]="facture" type="radio" id="facture1" name="facture" value="Матовая">
+        <label class="facture-label" for="facture1">Матовые</label>
+        <input [(ngModel)]="facture" type="radio" id="facture2" name="facture" value="Глянцевая">
+        <label class="facture-label" for="facture2">Глянцевые</label>
+        <input [(ngModel)]="facture" type="radio" id="facture3" name="facture" value="Сатиновая">
+        <label class="facture-label" for="facture3">Сатиновые</label>
+        <input [(ngModel)]="facture" type="radio" id="facture4" name="facture" value="Тканевая">
+        <label class="facture-label" for="facture4">Тканевые</label>
+      </div>
+    </div>
+    <!--Производитель------------------------------------------------------------------------>
+    <div class="calc-item">
+      <p class="title-item">2. Производитель</p>
+      <label class="label-title">&nbsp;</label>
+      <div *ngIf="facture === 'Матовая'" class="calc-item-flex">
+        <input [(ngModel)]="manufacturer" type="radio" id="classic" name="classic" [value]=price.classic>
+        <label class="facture-label" for="classic">Classic</label>
+
+        <input [(ngModel)]="manufacturer" type="radio" id="premium" name="premium" [value]=price.premium>
+        <label class="facture-label" for="premium">Premium</label>
+
+        <input [(ngModel)]="manufacturer" type="radio" id="evolution" name="evolution" [value]=price.evolution>
+        <label class="facture-label" for="evolution">Evolution</label>
+
+        <input [(ngModel)]="manufacturer" type="radio" id="teqtum_km" name="teqtum_km" [value]=price.teqtum_km>
+        <label class="facture-label" for="teqtum_km">Teqtum KM2</label>
+
+        <input [(ngModel)]="manufacturer" type="radio" id="teqtum_euro" name="teqtum_euro" [value]=price.teqtum_euro>
+        <label class="facture-label" for="teqtum_euro">Teqtum EURO</label>
+
+        <input [(ngModel)]="manufacturer" type="radio" id="lumfer" name="lumfer" [value]=price.lumfer>
+        <label class="facture-label" for="lumfer">Lumfer</label>
+
+        <input [(ngModel)]="manufacturer" type="radio" id="cold_stretch" name="cold_stretch" [value]=price.cold_stretch>
+        <label class="facture-label" for="cold_stretch">Cold stretch</label>
+      </div>
+      <div *ngIf="facture === 'Глянцевая' || facture === 'Сатиновая'" class="calc-item-flex">
+        <input [(ngModel)]="manufacturer" type="radio" id="classic-glyanc-sat" name="classic" [value]=price.classic>
+        <label class="facture-label" for="classic-glyanc-sat">Classic</label>
+
+        <input [(ngModel)]="manufacturer" type="radio" id="premium-glyanc-sat" name="premium" [value]=price.premium>
+        <label class="facture-label" for="premium-glyanc-sat">Premium</label>
+
+        <input [(ngModel)]="manufacturer" type="radio" id="evolution-glyanc-sat" name="evolution"
+               [value]=price.evolution>
+        <label class="facture-label" for="evolution-glyanc-sat">Evolution</label>
+
+        <input [(ngModel)]="manufacturer" type="radio" id="teqtum_euro-glyanc-sat" name="teqtum_euro"
+               [value]=price.teqtum_euro>
+        <label class="facture-label" for="teqtum_euro-glyanc-sat">Teqtum EURO</label>
+
+        <input [(ngModel)]="manufacturer" type="radio" id="lumfer-glyanc-sat" name="[lumfer]" value=price.lumfer>
+        <label class="facture-label" for="lumfer-glyanc-sat">Lumfer</label>
+      </div>
+      <div *ngIf="facture === 'Тканевая'" class="calc-item-flex">
+        <input [(ngModel)]="manufacturer" type="radio" id="d-premium" name="d_premium" [value]=price.d_premium>
+        <label class="facture-label" for="d-premium">D-Premium</label>
+      </div>
+    </div>
+    <!--Помещение------------------------------------------------------------------------>
+    <div class="calc-item">
+      <p class="title-item">3. Помещение</p>
+      <label class="label-title">Площадь, м2</label>
+      <div class="calc-control-box">
+        <button (click)="areaMinus()" class="calc-control minus" [disabled]="area < 1">-</button>
+        <input type="number" value="{{area}}" name="area" class="calc-input">
+        <button (click)="areaPlus()" class="calc-control plus">+</button>
+      </div>
+      <label class="label-title angles">Углы, шт</label>
+      <div class="calc-control-box">
+        <button (click)="anglesMinus()" class="calc-control minus" [disabled]="angles < 1">-</button>
+        <input type="number" value="{{angles}}" name="angles" class="calc-input">
+        <button (click)="anglesPlus()" class="calc-control plus">+</button>
+      </div>
+    </div>
+    <!--Освещение------------------------------------------------------------------------>
+    <div class="calc-item">
+      <p class="title-item">4. Освещение</p>
+      <label class="label-title">Светильники, шт</label>
+      <div class="calc-control-box">
+        <button (click)="lampMinus()" class="calc-control minus" [disabled]="lamps < 1">-</button>
+        <input type="number" value="{{lamps}}" name="lamps" class="calc-input">
+        <button (click)="lampPlus()" class="calc-control plus">+</button>
+      </div>
+      <label class="label-title luster">Люстры, шт</label>
+      <div class="calc-control-box">
+        <button (click)="lusterMinus()" class="calc-control minus" [disabled]="lusters < 1">-</button>
+        <input type="number" value="{{lusters}}" name="luster" class="calc-input">
+        <button (click)="lusterPlus()" class="calc-control plus">+</button>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,30 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.wrapper {
+  position: relative;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+header {
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  h1 {
+    margin: 10px 0;
+    text-align: center;
+  }
+}
